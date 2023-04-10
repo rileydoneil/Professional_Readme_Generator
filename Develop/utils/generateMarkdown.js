@@ -88,6 +88,7 @@ function generateMarkdown(responses) {
   tableOfContents += `# ${title} ${renderLicenseBadge(license)}\n`;
   tableOfContents += `## Table of Contents\n`;
   
+  //checks to see what parameters are not empty
   if (description) {
     tableOfContents += `* [Description](#description)\n`;
     mainText += `## Description\n <a name="description"></a>\n`
