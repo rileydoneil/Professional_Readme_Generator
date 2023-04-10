@@ -4,7 +4,8 @@
 
 function renderLicenseBadge(license) {
   if(license) {
-
+    let firstWord = license.split(" ");
+    return `<img src="https://img.shields.io/badge/license-${firstWord[0]}-green" alt="badge for license ${license}">`
   } else {
     return "";
   }
@@ -60,15 +61,13 @@ function renderLicenseLink(license) {
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty tableOfContents
 function renderLicenseSection(license) {
-  if(license) {
-
-  }
+  
 }
 
 //  Create a function to generate markdown for README
 function generateMarkdown(responses) {
    //generate table of contents (let me know if this should be in a seperate function)
-  let tableOfContents = `## Table of Contents`;
+  let tableOfContents = ``;
   //generates the main text of readme
   let mainText = ``;
   const {
@@ -82,45 +81,47 @@ function generateMarkdown(responses) {
     tests,
     questions,
   } = responses;
-  if(title) {
-    mainText += `## ${title}\n`;
-  } else {
-    mainText += `## Untitled Project\n`;
+  if(!title) {
+    title = "Untitled";
   }
   
+  tableOfContents += `# ${title} ${renderLicenseBadge(license)}\n`;
+  tableOfContents += `## Table of Contents\n`;
+  
   if (description) {
-    tableOfContents += `[Description] (#description)\n`;
-    mainText += `## Description <a name="description"></a>\n`
-    mainText += description;
+    tableOfContents += `* [Description](#description)\n`;
+    mainText += `## Description\n <a name="description"></a>\n`
+    mainText += `${description}\n`;
   }
   if (installation) {
-    tableOfContents += `[Installation] (#installation)\n`;
-    mainText += `## Installation <a name="installation"></a>\n`
+    tableOfContents += `* [Installation](#installation)\n`;
+    mainText += `## Installation\n <a name="installation"></a>\n`
     mainText += `${installation}\n`;
   } if (usage) {
-    tableOfContents += `[Usage] (#usage)\n`;
-    mainText += `## Usage <a name="usage"></a>\n`
+    tableOfContents += `* [Usage] (#usage)\n`;
+    mainText += `## Usage\n <a name="usage"></a>\n`
     mainText +=  `${usage}\n`;
   }
   if (contributing) {
-    tableOfContents += `[Contributing] (#contributing)\n`;
-    mainText += `## Contributing <a name="contributing"></a>\n`
+    tableOfContents += `* [Contributing](#contributing)\n`;
+    mainText += `## Contributing\n <a name="contributing"></a>\n`
     mainText += `${contributing}\n`;
   }
   if (license) {
-    tableOfContents += `[License] (#license)\n`;
-    mainText += `## License <a name="license"></a>\n`
-    mainText += `${license}\n`;
+    tableOfContents += `* [License](#license)\n`;
+    mainText += `## License\n <a name="license"></a>\n`
+    mainText += `<a href="${renderLicenseLink(license)}">${license}</a>\n`;
   }
   if (tests) {
-    tableOfContents += `[Tests] (#tests)\n`;
-    mainText += `## Tests <a name="tests"></a>\n`
+    tableOfContents += `* [Tests](#tests)\n`;
+    mainText += `## Tests\n <a name="tests"></a>\n`
     mainText += `${tests}\n`;
   }
   if (questions) {
-    tableOfContents += `[Questions] (#questions)\n`;
-    mainText += `## Questions <a name="questions"></a>\n`
-    mainText += `${questions}\n`;
+    tableOfContents += `* [Questions](#questions)\n`;
+    mainText += `## Questions\n <a name="questions"></a>\n`
+    mainText += `Have Questions? submit an issue to my github: `;
+    mainText += `<a href="https://www.github.com/${questions}">https://github.com/${questions}</a>\n`
   }
   return tableOfContents + mainText;
 }
