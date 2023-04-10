@@ -5,7 +5,7 @@
 function renderLicenseBadge(license) {
   if(license) {
     let firstWord = license.split(" ");
-    return `<img src="https://img.shields.io/badge/license-${firstWord[0]}-green" alt="badge for license ${license}">`
+    return `<img src="https://img.shields.io/badge/license-${firstWord[0]}-brightgreen" alt="badge for license ${license}">`
   } else {
     return "";
   }
@@ -98,7 +98,7 @@ function generateMarkdown(responses) {
     mainText += `## Installation\n <a name="installation"></a>\n`
     mainText += `${installation}\n`;
   } if (usage) {
-    tableOfContents += `* [Usage] (#usage)\n`;
+    tableOfContents += `* [Usage](#usage)\n`;
     mainText += `## Usage\n <a name="usage"></a>\n`
     mainText +=  `${usage}\n`;
   }
