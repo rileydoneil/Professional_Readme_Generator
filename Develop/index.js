@@ -23,12 +23,12 @@ const questions = [
     message: 'How do you install this?',
     },
     {
-    name: 'Usage',
+    name: 'usage',
     type: 'input',
     message: 'How do you use this?',
     },
     {
-    name: 'Contributing',
+    name: 'contributing',
     type: 'input',
     message: 'What resources did you use/ who is contributing?',
     },
